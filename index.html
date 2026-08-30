@@ -3,345 +3,1740 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Portal SHE</title>
 
 <style>
+
+/* =====================================================
+   PASTEL WARM PALETTE
+===================================================== */
+
+:root {
+    --mauve: #9c736c;
+    --mauve-soft: #d7c0bb;
+
+    --cream: #f0ead8;
+    --cream-light: #faf6ec;
+
+    --peach: #f0c0b0;
+    --peach-soft: #f4ddd5;
+
+    --mint: #c9e8df;
+    --mint-dark: #7d9f96;
+
+    --sage: #aeba92;
+    --sage-soft: #dce2d0;
+
+    --yellow: #fffadd;
+    --mustard: #ccc073;
+
+    --orange: #fdad54;
+    --orange-soft: #f8d7b0;
+
+    --brown: #8e776c;
+
+    --text: #3f3b39;
+    --text-light: #706b67;
+
+    --white: #ffffff;
+
+    --border: #e5ddd5;
+}
+
+
+/* =====================================================
+   RESET
+===================================================== */
+
 * {
-    box-sizing: border-box;
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
 }
 
 body {
-    font-family: Arial, Helvetica, sans-serif;
-    background: #f4f6f8;
-    color: #1f2937;
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    background: #fcfaf7;
+
+    color: var(--text);
 }
 
-.header {
-    background: #123b2a;
+
+/* =====================================================
+   NAVBAR
+===================================================== */
+
+.navbar {
+
+    height: 78px;
+
+    background: rgba(255,255,255,.97);
+
+    border-bottom: 1px solid var(--border);
+
+    display: flex;
+
+    align-items: center;
+
+    padding: 0 42px;
+
+    gap: 28px;
+
+    position: sticky;
+
+    top: 0;
+
+    z-index: 100;
+
+}
+
+
+/* LOGO */
+
+.logo {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 11px;
+
+    min-width: 260px;
+
+}
+
+.logo-icon {
+
+    width: 42px;
+
+    height: 42px;
+
+    background: var(--mauve);
+
     color: white;
-    padding: 30px 50px;
+
+    border-radius: 11px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 20px;
+
 }
 
-.header h1 {
-    font-size: 30px;
-    margin-bottom: 6px;
+.logo-text h1 {
+
+    font-size: 20px;
+
+    color: var(--mauve);
+
+    letter-spacing: -.3px;
+
 }
 
-.header p {
-    opacity: .85;
+.logo-text p {
+
+    margin-top: 3px;
+
+    font-size: 10px;
+
+    color: var(--text-light);
+
 }
+
+
+/* NAV MENU */
+
+.nav-menu {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 3px;
+
+    flex: 1;
+
+}
+
+.nav-menu a {
+
+    text-decoration: none;
+
+    color: #55504c;
+
+    font-size: 13px;
+
+    padding: 10px 13px;
+
+    border-radius: 9px;
+
+    transition: .2s;
+
+    white-space: nowrap;
+
+}
+
+.nav-menu a:hover {
+
+    background: var(--cream);
+
+    color: var(--mauve);
+
+}
+
+.nav-menu a.active {
+
+    background: var(--peach-soft);
+
+    color: var(--mauve);
+
+    font-weight: bold;
+
+}
+
+
+/* SEARCH */
+
+.search-box {
+
+    position: relative;
+
+    width: 215px;
+
+}
+
+.search-box input {
+
+    width: 100%;
+
+    height: 40px;
+
+    background: #fff;
+
+    border: 1px solid var(--border);
+
+    border-radius: 10px;
+
+    outline: none;
+
+    padding: 0 38px 0 14px;
+
+    font-size: 12px;
+
+    color: var(--text);
+
+}
+
+.search-box input:focus {
+
+    border-color: var(--mauve-soft);
+
+}
+
+.search-box span {
+
+    position: absolute;
+
+    right: 13px;
+
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    color: #8b8580;
+
+    font-size: 17px;
+
+}
+
+
+/* USER */
+
+.user {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    white-space: nowrap;
+
+    font-size: 12px;
+
+}
+
+.user-icon {
+
+    width: 34px;
+
+    height: 34px;
+
+    border-radius: 50%;
+
+    background: var(--mauve-soft);
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    color: white;
+
+    font-size: 15px;
+
+}
+
+
+/* =====================================================
+   MAIN
+===================================================== */
 
 .container {
-    max-width: 1100px;
-    margin: 35px auto;
-    padding: 0 25px;
+
+    max-width: 1460px;
+
+    margin: auto;
+
+    padding: 26px 38px 45px;
+
 }
 
-.welcome {
-    margin-bottom: 25px;
+
+/* =====================================================
+   HERO
+===================================================== */
+
+.hero {
+
+    min-height: 200px;
+
+    border-radius: 17px;
+
+    border: 1px solid #eadfd6;
+
+    background:
+
+        radial-gradient(
+            circle at 78% 40%,
+            rgba(201,232,223,.75),
+            transparent 26%
+        ),
+
+        radial-gradient(
+            circle at 52% 120%,
+            rgba(240,192,176,.5),
+            transparent 30%
+        ),
+
+        linear-gradient(
+            110deg,
+            #f6eadf,
+            #faf4e9 55%,
+            #f1eee3
+        );
+
+    position: relative;
+
+    overflow: hidden;
+
+    display: flex;
+
+    align-items: center;
+
+    padding: 38px 60px;
+
+    margin-bottom: 32px;
+
 }
 
-.welcome h2 {
-    font-size: 25px;
-    margin-bottom: 8px;
+
+/* HERO CONTENT */
+
+.hero-content {
+
+    position: relative;
+
+    z-index: 2;
+
 }
 
-.welcome p {
-    color: #6b7280;
+.hero h2 {
+
+    font-size: 31px;
+
+    color: #403c3a;
+
+    margin-bottom: 10px;
+
+    letter-spacing: -.5px;
+
 }
 
-.search {
-    width: 100%;
-    padding: 14px 18px;
-    border: 1px solid #d1d5db;
-    border-radius: 10px;
-    font-size: 15px;
-    margin-bottom: 28px;
-    outline: none;
+.hero p {
+
+    font-size: 14px;
+
+    line-height: 1.7;
+
+    color: #706964;
+
 }
 
-.search:focus {
-    border-color: #123b2a;
+
+/* HERO DECORATION */
+
+.hero-decoration {
+
+    position: absolute;
+
+    right: 75px;
+
+    bottom: -35px;
+
+    font-size: 130px;
+
+    opacity: .25;
+
+    transform: rotate(-4deg);
+
 }
+
+.leaf {
+
+    position: absolute;
+
+    color: var(--sage);
+
+    opacity: .35;
+
+}
+
+.leaf.one {
+
+    right: 300px;
+
+    top: 25px;
+
+    font-size: 35px;
+
+    transform: rotate(-20deg);
+
+}
+
+.leaf.two {
+
+    right: 230px;
+
+    bottom: 18px;
+
+    font-size: 45px;
+
+    transform: rotate(20deg);
+
+}
+
+
+/* =====================================================
+   SECTION HEADER
+===================================================== */
+
+.section-header {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    margin-bottom: 16px;
+
+}
+
+.section-header h3 {
+
+    font-size: 21px;
+
+    color: #45413e;
+
+}
+
+.category-count {
+
+    padding: 8px 13px;
+
+    border-radius: 9px;
+
+    background: #fff;
+
+    border: 1px solid var(--border);
+
+    color: #716b65;
+
+    font-size: 11px;
+
+}
+
+
+/* =====================================================
+   DOCUMENT GRID
+===================================================== */
 
 .grid {
+
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px;
+
+    grid-template-columns:
+        repeat(3, minmax(0,1fr));
+
+    gap: 17px;
+
 }
+
+
+/* =====================================================
+   CARD
+===================================================== */
 
 .card {
-    background: white;
+
+    min-height: 225px;
+
     border-radius: 14px;
-    padding: 25px;
-    box-shadow: 0 3px 12px rgba(0,0,0,.07);
-    transition: .2s;
+
+    padding: 21px;
+
+    border: 1px solid var(--border);
+
+    position: relative;
+
+    overflow: hidden;
+
+    transition:
+        transform .2s,
+        box-shadow .2s;
+
 }
+
+
+/* HOVER */
 
 .card:hover {
+
     transform: translateY(-3px);
-    box-shadow: 0 7px 20px rgba(0,0,0,.12);
+
+    box-shadow:
+        0 10px 28px
+        rgba(95,75,60,.09);
+
 }
+
+
+/* =====================================================
+   CARD BACKGROUNDS
+===================================================== */
+
+.card-hazard {
+
+    background:
+        linear-gradient(
+            135deg,
+            #fff8f6,
+            #f7e7e2
+        );
+
+    border-color: #ead5cf;
+
+}
+
+.card-sop {
+
+    background:
+        linear-gradient(
+            135deg,
+            #fffdf5,
+            #f4ecd6
+        );
+
+    border-color: #e8dec2;
+
+}
+
+.card-form {
+
+    background:
+        linear-gradient(
+            135deg,
+            #f9fcfa,
+            #e4eee8
+        );
+
+    border-color: #d5e3dc;
+
+}
+
+.card-template {
+
+    background:
+        linear-gradient(
+            135deg,
+            #fff9f5,
+            #f7e1d5
+        );
+
+    border-color: #edd5c8;
+
+}
+
+.card-policy {
+
+    background:
+        linear-gradient(
+            135deg,
+            #fbfaf4,
+            #ece9da
+        );
+
+    border-color: #e1ddc9;
+
+}
+
+.card-she {
+
+    background:
+        linear-gradient(
+            135deg,
+            #fff9f7,
+            #eadbd7
+        );
+
+    border-color: #dfcbc5;
+
+}
+
+
+/* =====================================================
+   CARD TOP
+===================================================== */
+
+.card-top {
+
+    display: flex;
+
+    align-items: flex-start;
+
+    justify-content: space-between;
+
+    margin-bottom: 15px;
+
+}
+
+
+/* ICON */
 
 .icon {
-    font-size: 38px;
-    margin-bottom: 15px;
+
+    width: 47px;
+
+    height: 47px;
+
+    border-radius: 12px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 21px;
+
 }
 
-.card h3 {
-    font-size: 19px;
-    margin-bottom: 9px;
+
+/* ICON COLORS */
+
+.icon-hazard {
+
+    background: #d2b9b4;
+
+    color: white;
+
+}
+
+.icon-sop {
+
+    background: #e8c992;
+
+    color: white;
+
+}
+
+.icon-form {
+
+    background: #aeba92;
+
+    color: white;
+
+}
+
+.icon-template {
+
+    background: #e8ae91;
+
+    color: white;
+
+}
+
+.icon-policy {
+
+    background: #c8bea0;
+
+    color: white;
+
+}
+
+.icon-she {
+
+    background: #bda39c;
+
+    color: white;
+
+}
+
+
+/* ARROW */
+
+.card-arrow {
+
+    color: #a59d97;
+
+    font-size: 18px;
+
+}
+
+
+/* =====================================================
+   CARD TEXT
+===================================================== */
+
+.card h4 {
+
+    font-size: 17px;
+
+    color: #403c39;
+
+    margin-bottom: 7px;
+
 }
 
 .card p {
-    color: #6b7280;
-    font-size: 14px;
-    line-height: 1.5;
-    margin-bottom: 18px;
+
+    font-size: 12px;
+
+    line-height: 1.6;
+
+    color: #6f6964;
+
+    min-height: 39px;
+
 }
 
-.btn {
-    display: inline-block;
-    text-decoration: none;
-    background: #123b2a;
-    color: white;
-    padding: 10px 16px;
+
+/* =====================================================
+   FILE NAME
+===================================================== */
+
+.file-name {
+
+    margin-top: 12px;
+
+    padding: 10px 11px;
+
+    background:
+        rgba(255,255,255,.58);
+
+    border: 1px solid
+        rgba(210,200,190,.45);
+
     border-radius: 8px;
-    font-size: 14px;
+
+    font-size: 11px;
+
+    color: #625c57;
+
+    line-height: 1.45;
+
+    word-break: break-word;
+
+}
+
+
+/* =====================================================
+   BUTTON
+===================================================== */
+
+.btn {
+
+    width: 100%;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    margin-top: 11px;
+
+    padding: 10px 12px;
+
+    text-decoration: none;
+
+    border-radius: 8px;
+
+    background:
+        rgba(255,255,255,.58);
+
+    border:
+        1px solid
+        rgba(205,195,185,.55);
+
+    color: #5a514c;
+
+    font-size: 12px;
+
+    transition: .2s;
+
 }
 
 .btn:hover {
-    background: #0d2d20;
+
+    background: white;
+
+    transform: translateX(2px);
+
+    box-shadow:
+        0 3px 10px
+        rgba(80,60,50,.06);
+
 }
 
-.file-name {
-    background: #f0f4f2;
-    padding: 10px;
-    border-radius: 8px;
+
+/* =====================================================
+   INFORMATION
+===================================================== */
+
+.info {
+
+    margin-top: 22px;
+
+    min-height: 76px;
+
+    border-radius: 12px;
+
+    border: 1px solid #d5dfd8;
+
+    background:
+        linear-gradient(
+            90deg,
+            #edf4ef,
+            #f4f4e9
+        );
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 14px;
+
+    padding: 14px 20px;
+
+}
+
+.info-icon {
+
+    width: 36px;
+
+    height: 36px;
+
+    border-radius: 50%;
+
+    background: #9eb6aa;
+
+    color: white;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-weight: bold;
+
+    flex-shrink: 0;
+
+}
+
+.info p {
+
     font-size: 12px;
-    line-height: 1.4;
-    margin-bottom: 15px;
-    word-break: break-word;
+
+    line-height: 1.6;
+
+    color: #5f6d67;
+
 }
 
-.note {
-    background: #fff8e1;
-    border-left: 4px solid #e0a800;
-    padding: 14px 16px;
-    margin-top: 28px;
-    border-radius: 6px;
-    font-size: 14px;
-    line-height: 1.5;
-}
+
+/* =====================================================
+   FOOTER
+===================================================== */
 
 .footer {
+
     text-align: center;
-    color: #9ca3af;
+
+    margin-top: 28px;
+
+    padding-top: 20px;
+
+    border-top: 1px solid var(--border);
+
+    font-size: 11px;
+
+    color: #aaa29c;
+
+}
+
+
+/* =====================================================
+   NO RESULT
+===================================================== */
+
+.no-result {
+
+    display: none;
+
+    grid-column: 1 / -1;
+
+    text-align: center;
+
+    padding: 50px;
+
+    color: #999;
+
     font-size: 13px;
-    padding: 35px 15px;
+
 }
 
-@media (max-width: 600px) {
-    .header {
-        padding: 22px 25px;
+
+/* =====================================================
+   TABLET
+===================================================== */
+
+@media(max-width:1100px) {
+
+    .navbar {
+
+        padding: 0 25px;
+
+        gap: 14px;
+
     }
 
-    .header h1 {
+    .logo {
+
+        min-width: auto;
+
+    }
+
+    .logo-text p {
+
+        display: none;
+
+    }
+
+    .nav-menu a {
+
+        padding: 9px 8px;
+
+    }
+
+    .search-box {
+
+        width: 170px;
+
+    }
+
+    .grid {
+
+        grid-template-columns:
+            repeat(2,1fr);
+
+    }
+
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media(max-width:750px) {
+
+    .navbar {
+
+        height: auto;
+
+        padding: 14px 18px;
+
+        flex-wrap: wrap;
+
+    }
+
+    .logo {
+
+        width: 100%;
+
+    }
+
+    .nav-menu {
+
+        order: 3;
+
+        width: 100%;
+
+        overflow-x: auto;
+
+    }
+
+    .nav-menu a {
+
+        flex-shrink: 0;
+
+    }
+
+    .search-box {
+
+        flex: 1;
+
+        width: auto;
+
+    }
+
+    .user {
+
+        display: none;
+
+    }
+
+    .container {
+
+        padding: 20px;
+
+    }
+
+    .hero {
+
+        min-height: 165px;
+
+        padding: 28px;
+
+    }
+
+    .hero h2 {
+
         font-size: 25px;
+
     }
+
+    .hero-decoration {
+
+        right: 20px;
+
+    }
+
+    .grid {
+
+        grid-template-columns: 1fr;
+
+    }
+
 }
+
+
+/* =====================================================
+   SMALL MOBILE
+===================================================== */
+
+@media(max-width:480px) {
+
+    .search-box {
+
+        width: 100%;
+
+        flex-basis: 100%;
+
+    }
+
+    .hero-decoration,
+    .leaf {
+
+        display: none;
+
+    }
+
+}
+
 </style>
 </head>
 
+
 <body>
 
-<header class="header">
-    <h1>📚 PORTAL SHE</h1>
-    <p>Safety, Health & Environment — Document Portal</p>
+
+<!-- =====================================================
+     NAVBAR
+===================================================== -->
+
+<header class="navbar">
+
+
+    <!-- LOGO -->
+
+    <div class="logo">
+
+        <div class="logo-icon">
+            🌿
+        </div>
+
+        <div class="logo-text">
+
+            <h1>PORTAL SHE</h1>
+
+            <p>
+                Safety, Health & Environment
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- MENU -->
+
+    <nav class="nav-menu">
+
+        <a href="#" class="active">
+            🏠 Home
+        </a>
+
+        <a href="#documents">
+            📁 Documents
+        </a>
+
+        <a href="#">
+            ◔ Dashboard
+        </a>
+
+        <a href="#">
+            📝 Forms
+        </a>
+
+        <a href="#">
+            ▥ Reports
+        </a>
+
+    </nav>
+
+
+    <!-- SEARCH -->
+
+    <div class="search-box">
+
+        <input
+            type="text"
+            id="search"
+            placeholder="Cari dokumen..."
+            onkeyup="cariDokumen()"
+        >
+
+        <span>⌕</span>
+
+    </div>
+
+
+    <!-- USER -->
+
+    <div class="user">
+
+        <div class="user-icon">
+            👤
+        </div>
+
+        <span>
+            SHE Dept⌄
+        </span>
+
+    </div>
+
+
 </header>
+
+
+
+<!-- =====================================================
+     MAIN
+===================================================== -->
 
 <main class="container">
 
-    <section class="welcome">
-        <h2>Selamat Datang</h2>
-        <p>Akses dokumen SHE melalui portal kantor.</p>
-    </section>
 
-    <input
-        type="text"
-        id="search"
-        class="search"
-        placeholder="🔎 Cari dokumen..."
-        onkeyup="cariDokumen()"
-    >
+    <!-- =================================================
+         HERO
+    ================================================== -->
 
-    <section class="grid" id="cards">
+    <section class="hero">
 
-        <!-- HAZARD REPORT -->
-        <div class="card" data-search="hazard report kta tta adago agustus excel">
+        <div class="hero-content">
 
-            <div class="icon">⚠️</div>
-
-            <h3>Hazard Report</h3>
+            <h2>
+                Selamat Datang! 🌿
+            </h2>
 
             <p>
-                Daily KTA & TTA PPA — Agustus 2026
+                Akses semua dokumen SHE di satu portal.
+                <br>
+                Mudah, cepat, dan terorganisir.
             </p>
 
-            <div class="file-name">
-                📊 Daily KTA & TTA PPA PPA Agustus 2026_ADAGO.xlsx
+        </div>
+
+
+        <div class="hero-decoration">
+            📄
+        </div>
+
+        <div class="leaf one">
+            ❧
+        </div>
+
+        <div class="leaf two">
+            ❧
+        </div>
+
+    </section>
+
+
+
+    <!-- =================================================
+         DOCUMENTS
+    ================================================== -->
+
+    <section id="documents">
+
+
+        <div class="section-header">
+
+            <h3>
+                Kategori Dokumen
+            </h3>
+
+            <div class="category-count">
+                ▦ &nbsp; 6 Kategori
             </div>
 
-            <!--
-                File berada di:
-                \\10.7.8.8\SHE 02 (Data 2024-Sekarang)\24. HAZARD REPORT\2026\8. Agustus\Hazard Report
-            -->
-            <a class="btn"
-            href="ms-excel:ofe|u|file://10.7.8.8/SHE/SHE%2002%20(Data%202024-Sekarang)/24.%20HAZARD%20REPORT/2026/8.%20Agustus/Hazard%20Report/Daily%20KTA%20%26%20TTA%20PPA%20Agustus%202026_ADAGO.xlsx">
-                📊 Buka Excel
-            </a>
-
         </div>
 
 
-        <!-- SOP -->
-        <div class="card" data-search="sop standard operating procedure prosedur">
 
-            <div class="icon">📘</div>
-
-            <h3>SOP</h3>
-
-            <p>
-                Kumpulan Standard Operating Procedure
-                dan prosedur kerja.
-            </p>
-
-            <a class="btn" href="#">
-                📁 Buka Folder
-            </a>
-
-        </div>
+        <div class="grid" id="cards">
 
 
-        <!-- FORM -->
-        <div class="card" data-search="form formulir">
+            <!-- =========================================
+                 HAZARD REPORT
+            ========================================== -->
 
-            <div class="icon">📝</div>
+            <div
+                class="card card-hazard"
+                data-search="hazard report kta tta ppa adago agustus excel"
+            >
 
-            <h3>Form</h3>
+                <div class="card-top">
 
-            <p>
-                Formulir SHE yang digunakan untuk
-                kegiatan operasional.
-            </p>
+                    <div class="icon icon-hazard">
+                        ⚠
+                    </div>
 
-            <a class="btn" href="#">
-                📁 Buka Folder
-            </a>
+                    <div class="card-arrow">
+                        ↗
+                    </div>
 
-        </div>
-
-
-        <!-- TEMPLATE -->
-        <div class="card" data-search="template dokumen">
-
-            <div class="icon">📂</div>
-
-            <h3>Template</h3>
-
-            <p>
-                Template dokumen, laporan, surat,
-                presentasi dan kebutuhan lainnya.
-            </p>
-
-            <a class="btn" href="#">
-                📁 Buka Folder
-            </a>
-
-        </div>
+                </div>
 
 
-        <!-- KEBIJAKAN -->
-        <div class="card" data-search="kebijakan policy aturan">
-
-            <div class="icon">📋</div>
-
-            <h3>Kebijakan</h3>
-
-            <p>
-                Dokumen kebijakan dan ketentuan
-                yang berlaku.
-            </p>
-
-            <a class="btn" href="#">
-                📁 Buka Folder
-            </a>
-
-        </div>
+                <h4>
+                    Hazard Report
+                </h4>
 
 
-        <!-- DOKUMEN SHE -->
-        <div class="card" data-search="dokumen she lainnya">
+                <p>
+                    Daily KTA & TTA PPA
+                    <br>
+                    Agustus 2026
+                </p>
 
-            <div class="icon">🗃️</div>
 
-            <h3>Dokumen SHE</h3>
+                <div class="file-name">
 
-            <p>
-                Dokumen SHE lainnya yang tersedia
-                di server kantor.
-            </p>
+                    📊 &nbsp;
+                    Daily KTA & TTA PPA
+                    PPA Agustus 2026_ADAGO.xlsx
 
-            <a class="btn" href="#">
-                📁 Buka Folder
-            </a>
+                </div>
+
+
+                <!--
+                    File berada di:
+
+                    \\10.7.8.8\SHE 02 (Data 2024-Sekarang)\24. HAZARD REPORT\2026\8. Agustus\Hazard Report
+                -->
+
+
+                <a
+                    class="btn"
+                    href="ms-excel:ofe|u|file://10.7.8.8/SHE/SHE%2002%20(Data%202024-Sekarang)/24.%20HAZARD%20REPORT/2026/8.%20Agustus/Hazard%20Report/Daily%20KTA%20%26%20TTA%20PPA%20Agustus%202026_ADAGO.xlsx"
+                >
+
+                    <span>
+                        📊 Buka Excel
+                    </span>
+
+                    <span>
+                        ›
+                    </span>
+
+                </a>
+
+            </div>
+
+
+
+            <!-- =========================================
+                 SOP
+            ========================================== -->
+
+            <div
+                class="card card-sop"
+                data-search="sop standard operating procedure prosedur"
+            >
+
+                <div class="card-top">
+
+                    <div class="icon icon-sop">
+                        📖
+                    </div>
+
+                    <div class="card-arrow">
+                        ↗
+                    </div>
+
+                </div>
+
+
+                <h4>
+                    SOP
+                </h4>
+
+
+                <p>
+                    Kumpulan Standard Operating
+                    Procedure dan prosedur kerja.
+                </p>
+
+
+                <a
+                    class="btn"
+                    href="#"
+                >
+
+                    <span>
+                        📁 Buka Folder
+                    </span>
+
+                    <span>
+                        ›
+                    </span>
+
+                </a>
+
+            </div>
+
+
+
+            <!-- =========================================
+                 FORM
+            ========================================== -->
+
+            <div
+                class="card card-form"
+                data-search="form formulir"
+            >
+
+                <div class="card-top">
+
+                    <div class="icon icon-form">
+                        📝
+                    </div>
+
+                    <div class="card-arrow">
+                        ↗
+                    </div>
+
+                </div>
+
+
+                <h4>
+                    Form
+                </h4>
+
+
+                <p>
+                    Formulir SHE yang digunakan
+                    untuk kegiatan operasional.
+                </p>
+
+
+                <a
+                    class="btn"
+                    href="#"
+                >
+
+                    <span>
+                        📁 Buka Folder
+                    </span>
+
+                    <span>
+                        ›
+                    </span>
+
+                </a>
+
+            </div>
+
+
+
+            <!-- =========================================
+                 TEMPLATE
+            ========================================== -->
+
+            <div
+                class="card card-template"
+                data-search="template dokumen laporan surat presentasi"
+            >
+
+                <div class="card-top">
+
+                    <div class="icon icon-template">
+                        📄
+                    </div>
+
+                    <div class="card-arrow">
+                        ↗
+                    </div>
+
+                </div>
+
+
+                <h4>
+                    Template
+                </h4>
+
+
+                <p>
+                    Template dokumen, laporan,
+                    surat, presentasi dan kebutuhan
+                    lainnya.
+                </p>
+
+
+                <a
+                    class="btn"
+                    href="#"
+                >
+
+                    <span>
+                        📁 Buka Folder
+                    </span>
+
+                    <span>
+                        ›
+                    </span>
+
+                </a>
+
+            </div>
+
+
+
+            <!-- =========================================
+                 KEBIJAKAN
+            ========================================== -->
+
+            <div
+                class="card card-policy"
+                data-search="kebijakan policy aturan ketentuan"
+            >
+
+                <div class="card-top">
+
+                    <div class="icon icon-policy">
+                        🛡
+                    </div>
+
+                    <div class="card-arrow">
+                        ↗
+                    </div>
+
+                </div>
+
+
+                <h4>
+                    Kebijakan
+                </h4>
+
+
+                <p>
+                    Dokumen kebijakan dan
+                    ketentuan yang berlaku.
+                </p>
+
+
+                <a
+                    class="btn"
+                    href="#"
+                >
+
+                    <span>
+                        📁 Buka Folder
+                    </span>
+
+                    <span>
+                        ›
+                    </span>
+
+                </a>
+
+            </div>
+
+
+
+            <!-- =========================================
+                 DOKUMEN SHE
+            ========================================== -->
+
+            <div
+                class="card card-she"
+                data-search="dokumen she lainnya server kantor"
+            >
+
+                <div class="card-top">
+
+                    <div class="icon icon-she">
+                        🗃
+                    </div>
+
+                    <div class="card-arrow">
+                        ↗
+                    </div>
+
+                </div>
+
+
+                <h4>
+                    Dokumen SHE
+                </h4>
+
+
+                <p>
+                    Dokumen SHE lainnya yang
+                    tersedia di server kantor.
+                </p>
+
+
+                <a
+                    class="btn"
+                    href="#"
+                >
+
+                    <span>
+                        📁 Buka Folder
+                    </span>
+
+                    <span>
+                        ›
+                    </span>
+
+                </a>
+
+            </div>
+
+
+
+            <!-- NO RESULT -->
+
+            <div
+                class="no-result"
+                id="noResult"
+            >
+
+                😕
+                <br><br>
+
+                Dokumen tidak ditemukan.
+
+            </div>
+
 
         </div>
 
     </section>
 
 
-    <div class="note">
-        <strong>ℹ️ Catatan:</strong>
-        File tetap tersimpan di server kantor
-        <strong>10.7.8.8</strong>. Portal hanya menjadi
-        akses menuju dokumen tersebut.
+
+    <!-- =================================================
+         INFORMATION
+    ================================================== -->
+
+    <div class="info">
+
+        <div class="info-icon">
+            i
+        </div>
+
+        <p>
+
+            <strong>Informasi:</strong>
+
+            &nbsp; Dokumen tetap tersimpan di server kantor
+            <strong>10.7.8.8</strong>.
+
+            Portal ini hanya menyediakan akses menuju
+            dokumen tersebut.
+
+        </p>
+
     </div>
+
+
+
+    <!-- =================================================
+         FOOTER
+    ================================================== -->
+
+    <footer class="footer">
+
+        © 2026 SHE Portal
+        &nbsp; • &nbsp;
+        Safety, Health & Environment
+
+    </footer>
+
 
 </main>
 
-<footer class="footer">
-    © 2026 SHE Portal
-</footer>
 
+
+<!-- =====================================================
+     SEARCH SCRIPT
+===================================================== -->
 
 <script>
+
 function cariDokumen() {
 
-    const input = document
+    const input =
+        document
         .getElementById("search")
         .value
-        .toLowerCase();
+        .toLowerCase()
+        .trim();
 
-    const cards = document.querySelectorAll(".card");
+
+    const cards =
+        document.querySelectorAll(
+            "#cards .card"
+        );
+
+
+    let ditemukan = 0;
+
 
     cards.forEach(function(card) {
 
-        const keyword = card
-            .getAttribute("data-search")
-            .toLowerCase();
+        const keyword =
+            card.getAttribute(
+                "data-search"
+            );
 
-        if (keyword.includes(input)) {
+
+        if (!keyword) return;
+
+
+        if (
+            keyword
+            .toLowerCase()
+            .includes(input)
+        ) {
+
             card.style.display = "";
+
+            ditemukan++;
+
         } else {
+
             card.style.display = "none";
+
         }
 
     });
+
+
+    const noResult =
+        document.getElementById(
+            "noResult"
+        );
+
+
+    if (ditemukan === 0) {
+
+        noResult.style.display =
+            "block";
+
+    } else {
+
+        noResult.style.display =
+            "none";
+
+    }
+
 }
+
 </script>
+
 
 </body>
 </html>
