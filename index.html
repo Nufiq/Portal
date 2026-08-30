@@ -1,64 +1,171 @@
+```html
 <!DOCTYPE html>
 <html lang="id">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Portal SHE</title>
 
 <style>
 * {
-    box-sizing: border-box;
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 
 body {
     font-family: Arial, Helvetica, sans-serif;
-    background: #f4f6f8;
+    background: #f6f8f7;
     color: #1f2937;
 }
 
-.header {
+/* =========================
+   SIDEBAR
+========================= */
+
+.sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 230px;
+    height: 100vh;
     background: #123b2a;
     color: white;
-    padding: 30px 50px;
+    padding: 28px 20px;
 }
 
-.header h1 {
+.logo {
+    padding: 5px 10px 35px;
+}
+
+.logo h1 {
+    font-size: 20px;
+    letter-spacing: .5px;
+}
+
+.logo p {
+    font-size: 11px;
+    opacity: .65;
+    margin-top: 5px;
+}
+
+.menu-title {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    opacity: .5;
+    padding: 0 10px;
+    margin-bottom: 10px;
+}
+
+.menu a {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    color: rgba(255,255,255,.75);
+    padding: 12px 10px;
+    border-radius: 8px;
+    font-size: 14px;
+    margin-bottom: 4px;
+    transition: .2s;
+}
+
+.menu a:hover,
+.menu a.active {
+    background: rgba(255,255,255,.10);
+    color: white;
+}
+
+.menu-icon {
+    width: 20px;
+    text-align: center;
+}
+
+/* =========================
+   MAIN
+========================= */
+
+.main {
+    margin-left: 230px;
+    min-height: 100vh;
+}
+
+/* TOP BAR */
+
+.topbar {
+    height: 72px;
+    background: white;
+    border-bottom: 1px solid #e5e7eb;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 42px;
+}
+
+.breadcrumb {
+    font-size: 13px;
+    color: #6b7280;
+}
+
+.breadcrumb strong {
+    color: #1f2937;
+}
+
+.top-right {
+    font-size: 13px;
+    color: #6b7280;
+}
+
+/* CONTENT */
+
+.content {
+    max-width: 1200px;
+    margin: auto;
+    padding: 42px;
+}
+
+/* HERO */
+
+.hero {
+    margin-bottom: 35px;
+}
+
+.hero h2 {
     font-size: 30px;
-    margin-bottom: 6px;
-}
-
-.header p {
-    opacity: .85;
-}
-
-.container {
-    max-width: 1100px;
-    margin: 35px auto;
-    padding: 0 25px;
-}
-
-.welcome {
-    margin-bottom: 25px;
-}
-
-.welcome h2 {
-    font-size: 25px;
+    color: #123b2a;
     margin-bottom: 8px;
 }
 
-.welcome p {
+.hero p {
     color: #6b7280;
+    font-size: 14px;
+}
+
+/* SEARCH */
+
+.search-wrapper {
+    position: relative;
+    margin-bottom: 35px;
+}
+
+.search-icon {
+    position: absolute;
+    left: 17px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #9ca3af;
 }
 
 .search {
     width: 100%;
-    padding: 14px 18px;
-    border: 1px solid #d1d5db;
-    border-radius: 10px;
-    font-size: 15px;
-    margin-bottom: 28px;
+    height: 48px;
+    border: 1px solid #d9dfdc;
+    background: white;
+    border-radius: 9px;
+    padding: 0 18px 0 45px;
+    font-size: 14px;
     outline: none;
 }
 
@@ -66,281 +173,695 @@ body {
     border-color: #123b2a;
 }
 
+/* SECTION */
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 17px;
+}
+
+.section-header h3 {
+    font-size: 17px;
+    color: #1f2937;
+}
+
+.section-header span {
+    font-size: 12px;
+    color: #9ca3af;
+}
+
+/* =========================
+   DOCUMENT GRID
+========================= */
+
 .grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
 }
 
 .card {
     background: white;
-    border-radius: 14px;
-    padding: 25px;
-    box-shadow: 0 3px 12px rgba(0,0,0,.07);
+    border: 1px solid #e5e9e7;
+    border-radius: 11px;
+    padding: 22px;
     transition: .2s;
 }
 
 .card:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 7px 20px rgba(0,0,0,.12);
+    border-color: #a8bdb2;
+    box-shadow: 0 8px 22px rgba(18,59,42,.07);
+    transform: translateY(-2px);
+}
+
+.card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 17px;
 }
 
 .icon {
-    font-size: 38px;
-    margin-bottom: 15px;
+    width: 42px;
+    height: 42px;
+    border-radius: 9px;
+    background: #edf4f0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
 }
 
-.card h3 {
-    font-size: 19px;
-    margin-bottom: 9px;
+.arrow {
+    color: #a0aaa5;
+    font-size: 16px;
+}
+
+.card h4 {
+    font-size: 16px;
+    margin-bottom: 7px;
+    color: #1f2937;
 }
 
 .card p {
+    font-size: 13px;
     color: #6b7280;
-    font-size: 14px;
     line-height: 1.5;
-    margin-bottom: 18px;
+    min-height: 39px;
 }
 
+/* FILE */
+
+.file-name {
+    background: #f5f7f6;
+    border: 1px solid #edf0ee;
+    padding: 10px 11px;
+    border-radius: 7px;
+    margin-top: 15px;
+    font-size: 11px;
+    color: #5f6b65;
+    line-height: 1.4;
+    word-break: break-word;
+}
+
+/* BUTTON */
+
 .btn {
-    display: inline-block;
-    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    margin-top: 16px;
+    padding: 9px 13px;
+    border-radius: 7px;
     background: #123b2a;
     color: white;
-    padding: 10px 16px;
-    border-radius: 8px;
-    font-size: 14px;
+    text-decoration: none;
+    font-size: 12px;
+    transition: .2s;
 }
 
 .btn:hover {
     background: #0d2d20;
 }
 
-.file-name {
-    background: #f0f4f2;
-    padding: 10px;
-    border-radius: 8px;
-    font-size: 12px;
-    line-height: 1.4;
-    margin-bottom: 15px;
-    word-break: break-word;
+/* =========================
+   INFO
+========================= */
+
+.info {
+    margin-top: 35px;
+    background: #fffdf5;
+    border: 1px solid #eee4bd;
+    border-radius: 9px;
+    padding: 15px 18px;
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
 }
 
-.note {
-    background: #fff8e1;
-    border-left: 4px solid #e0a800;
-    padding: 14px 16px;
-    margin-top: 28px;
-    border-radius: 6px;
-    font-size: 14px;
-    line-height: 1.5;
+.info-icon {
+    font-size: 16px;
 }
+
+.info p {
+    font-size: 12px;
+    line-height: 1.6;
+    color: #6b6652;
+}
+
+/* FOOTER */
 
 .footer {
+    margin-top: 55px;
+    border-top: 1px solid #e5e7eb;
+    padding: 25px 0;
     text-align: center;
     color: #9ca3af;
-    font-size: 13px;
-    padding: 35px 15px;
+    font-size: 11px;
 }
 
-@media (max-width: 600px) {
-    .header {
-        padding: 22px 25px;
+/* =========================
+   TABLET
+========================= */
+
+@media (max-width: 950px) {
+
+    .sidebar {
+        width: 190px;
     }
 
-    .header h1 {
+    .main {
+        margin-left: 190px;
+    }
+
+    .grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 650px) {
+
+    .sidebar {
+        position: static;
+        width: 100%;
+        height: auto;
+        padding: 18px;
+    }
+
+    .logo {
+        padding: 5px 5px 18px;
+    }
+
+    .menu {
+        display: flex;
+        gap: 5px;
+        overflow-x: auto;
+    }
+
+    .menu-title {
+        display: none;
+    }
+
+    .menu a {
+        white-space: nowrap;
+        margin: 0;
+    }
+
+    .main {
+        margin-left: 0;
+    }
+
+    .topbar {
+        padding: 0 20px;
+    }
+
+    .top-right {
+        display: none;
+    }
+
+    .content {
+        padding: 28px 20px;
+    }
+
+    .hero h2 {
         font-size: 25px;
+    }
+
+    .grid {
+        grid-template-columns: 1fr;
     }
 }
 </style>
 </head>
 
+
 <body>
 
-<header class="header">
-    <h1>📚 PORTAL SHE</h1>
-    <p>Safety, Health & Environment — Document Portal</p>
-</header>
+<!-- =========================
+     SIDEBAR
+========================= -->
 
-<main class="container">
+<aside class="sidebar">
 
-    <section class="welcome">
-        <h2>Selamat Datang</h2>
-        <p>Akses dokumen SHE melalui portal kantor.</p>
-    </section>
-
-    <input
-        type="text"
-        id="search"
-        class="search"
-        placeholder="🔎 Cari dokumen..."
-        onkeyup="cariDokumen()"
-    >
-
-    <section class="grid" id="cards">
-
-        <!-- HAZARD REPORT -->
-        <div class="card" data-search="hazard report kta tta adago agustus excel">
-
-            <div class="icon">⚠️</div>
-
-            <h3>Hazard Report</h3>
-
-            <p>
-                Daily KTA & TTA PPA — Agustus 2026
-            </p>
-
-            <div class="file-name">
-                📊 Daily KTA & TTA PPA PPA Agustus 2026_ADAGO.xlsx
-            </div>
-
-            <!--
-                File berada di:
-                \\10.7.8.8\SHE 02 (Data 2024-Sekarang)\24. HAZARD REPORT\2026\8. Agustus\Hazard Report
-            -->
-            <a class="btn"
-            href="ms-excel:ofe|u|file://10.7.8.8/SHE/SHE%2002%20(Data%202024-Sekarang)/24.%20HAZARD%20REPORT/2026/8.%20Agustus/Hazard%20Report/Daily%20KTA%20%26%20TTA%20PPA%20Agustus%202026_ADAGO.xlsx">
-                📊 Buka Excel
-            </a>
-
-        </div>
-
-
-        <!-- SOP -->
-        <div class="card" data-search="sop standard operating procedure prosedur">
-
-            <div class="icon">📘</div>
-
-            <h3>SOP</h3>
-
-            <p>
-                Kumpulan Standard Operating Procedure
-                dan prosedur kerja.
-            </p>
-
-            <a class="btn" href="#">
-                📁 Buka Folder
-            </a>
-
-        </div>
-
-
-        <!-- FORM -->
-        <div class="card" data-search="form formulir">
-
-            <div class="icon">📝</div>
-
-            <h3>Form</h3>
-
-            <p>
-                Formulir SHE yang digunakan untuk
-                kegiatan operasional.
-            </p>
-
-            <a class="btn" href="#">
-                📁 Buka Folder
-            </a>
-
-        </div>
-
-
-        <!-- TEMPLATE -->
-        <div class="card" data-search="template dokumen">
-
-            <div class="icon">📂</div>
-
-            <h3>Template</h3>
-
-            <p>
-                Template dokumen, laporan, surat,
-                presentasi dan kebutuhan lainnya.
-            </p>
-
-            <a class="btn" href="#">
-                📁 Buka Folder
-            </a>
-
-        </div>
-
-
-        <!-- KEBIJAKAN -->
-        <div class="card" data-search="kebijakan policy aturan">
-
-            <div class="icon">📋</div>
-
-            <h3>Kebijakan</h3>
-
-            <p>
-                Dokumen kebijakan dan ketentuan
-                yang berlaku.
-            </p>
-
-            <a class="btn" href="#">
-                📁 Buka Folder
-            </a>
-
-        </div>
-
-
-        <!-- DOKUMEN SHE -->
-        <div class="card" data-search="dokumen she lainnya">
-
-            <div class="icon">🗃️</div>
-
-            <h3>Dokumen SHE</h3>
-
-            <p>
-                Dokumen SHE lainnya yang tersedia
-                di server kantor.
-            </p>
-
-            <a class="btn" href="#">
-                📁 Buka Folder
-            </a>
-
-        </div>
-
-    </section>
-
-
-    <div class="note">
-        <strong>ℹ️ Catatan:</strong>
-        File tetap tersimpan di server kantor
-        <strong>10.7.8.8</strong>. Portal hanya menjadi
-        akses menuju dokumen tersebut.
+    <div class="logo">
+        <h1>📚 PORTAL SHE</h1>
+        <p>Safety · Health · Environment</p>
     </div>
 
-</main>
+    <div class="menu-title">
+        Navigation
+    </div>
 
-<footer class="footer">
-    © 2026 SHE Portal
-</footer>
+    <nav class="menu">
+
+        <a href="#" class="active">
+            <span class="menu-icon">⌂</span>
+            Home
+        </a>
+
+        <a href="#documents">
+            <span class="menu-icon">📁</span>
+            Documents
+        </a>
+
+        <a href="#quick">
+            <span class="menu-icon">⚡</span>
+            Quick Access
+        </a>
+
+    </nav>
+
+</aside>
+
+
+<!-- =========================
+     MAIN
+========================= -->
+
+<div class="main">
+
+    <!-- TOP BAR -->
+
+    <div class="topbar">
+
+        <div class="breadcrumb">
+            Home / <strong>Document Portal</strong>
+        </div>
+
+        <div class="top-right">
+            SHE Department
+        </div>
+
+    </div>
+
+
+    <!-- CONTENT -->
+
+    <main class="content">
+
+        <!-- HERO -->
+
+        <section class="hero">
+
+            <h2>Document Portal</h2>
+
+            <p>
+                Akses dokumen Safety, Health & Environment melalui satu portal.
+            </p>
+
+        </section>
+
+
+        <!-- SEARCH -->
+
+        <div class="search-wrapper">
+
+            <span class="search-icon">🔎</span>
+
+            <input
+                type="text"
+                id="search"
+                class="search"
+                placeholder="Cari dokumen atau kategori..."
+                onkeyup="cariDokumen()"
+            >
+
+        </div>
+
+
+        <!-- DOCUMENTS -->
+
+        <section id="documents">
+
+            <div class="section-header">
+
+                <h3>Dokumen & Aplikasi</h3>
+
+                <span>6 kategori</span>
+
+            </div>
+
+
+            <div class="grid" id="cards">
+
+
+                <!-- HAZARD REPORT -->
+
+                <div
+                    class="card"
+                    data-search="hazard report kta tta ppa adago agustus excel"
+                >
+
+                    <div class="card-top">
+
+                        <div class="icon">
+                            ⚠️
+                        </div>
+
+                        <div class="arrow">
+                            ↗
+                        </div>
+
+                    </div>
+
+                    <h4>Hazard Report</h4>
+
+                    <p>
+                        Daily KTA & TTA PPA — Agustus 2026
+                    </p>
+
+                    <div class="file-name">
+                        📊 Daily KTA & TTA PPA
+                        PPA Agustus 2026_ADAGO.xlsx
+                    </div>
+
+                    <!--
+                    File berada di:
+                    \\10.7.8.8\SHE 02 (Data 2024-Sekarang)\24. HAZARD REPORT\2026\8. Agustus\Hazard Report
+                    -->
+
+                    <a
+                        class="btn"
+                        href="ms-excel:ofe|u|file://10.7.8.8/SHE/SHE%2002%20(Data%202024-Sekarang)/24.%20HAZARD%20REPORT/2026/8.%20Agustus/Hazard%20Report/Daily%20KTA%20%26%20TTA%20PPA%20Agustus%202026_ADAGO.xlsx"
+                    >
+                        📊 Buka Excel
+                    </a>
+
+                </div>
+
+
+                <!-- SOP -->
+
+                <div
+                    class="card"
+                    data-search="sop standard operating procedure prosedur"
+                >
+
+                    <div class="card-top">
+
+                        <div class="icon">
+                            📘
+                        </div>
+
+                        <div class="arrow">
+                            ↗
+                        </div>
+
+                    </div>
+
+                    <h4>SOP</h4>
+
+                    <p>
+                        Standard Operating Procedure
+                        dan prosedur kerja.
+                    </p>
+
+                    <a class="btn" href="#">
+                        📁 Buka Folder
+                    </a>
+
+                </div>
+
+
+                <!-- FORM -->
+
+                <div
+                    class="card"
+                    data-search="form formulir"
+                >
+
+                    <div class="card-top">
+
+                        <div class="icon">
+                            📝
+                        </div>
+
+                        <div class="arrow">
+                            ↗
+                        </div>
+
+                    </div>
+
+                    <h4>Form</h4>
+
+                    <p>
+                        Formulir SHE untuk kegiatan
+                        operasional.
+                    </p>
+
+                    <a class="btn" href="#">
+                        📁 Buka Folder
+                    </a>
+
+                </div>
+
+
+                <!-- TEMPLATE -->
+
+                <div
+                    class="card"
+                    data-search="template dokumen laporan surat presentasi"
+                >
+
+                    <div class="card-top">
+
+                        <div class="icon">
+                            📂
+                        </div>
+
+                        <div class="arrow">
+                            ↗
+                        </div>
+
+                    </div>
+
+                    <h4>Template</h4>
+
+                    <p>
+                        Template dokumen, laporan,
+                        surat dan presentasi.
+                    </p>
+
+                    <a class="btn" href="#">
+                        📁 Buka Folder
+                    </a>
+
+                </div>
+
+
+                <!-- KEBIJAKAN -->
+
+                <div
+                    class="card"
+                    data-search="kebijakan policy aturan ketentuan"
+                >
+
+                    <div class="card-top">
+
+                        <div class="icon">
+                            📋
+                        </div>
+
+                        <div class="arrow">
+                            ↗
+                        </div>
+
+                    </div>
+
+                    <h4>Kebijakan</h4>
+
+                    <p>
+                        Kebijakan dan ketentuan
+                        yang berlaku.
+                    </p>
+
+                    <a class="btn" href="#">
+                        📁 Buka Folder
+                    </a>
+
+                </div>
+
+
+                <!-- DOKUMEN SHE -->
+
+                <div
+                    class="card"
+                    data-search="dokumen she lainnya"
+                >
+
+                    <div class="card-top">
+
+                        <div class="icon">
+                            🗃️
+                        </div>
+
+                        <div class="arrow">
+                            ↗
+                        </div>
+
+                    </div>
+
+                    <h4>Dokumen SHE</h4>
+
+                    <p>
+                        Dokumen SHE lainnya yang
+                        tersedia di server kantor.
+                    </p>
+
+                    <a class="btn" href="#">
+                        📁 Buka Folder
+                    </a>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+        <!-- QUICK ACCESS -->
+
+        <section id="quick" style="margin-top: 38px;">
+
+            <div class="section-header">
+
+                <h3>Quick Access</h3>
+
+            </div>
+
+            <div class="grid">
+
+                <div class="card">
+
+                    <div class="card-top">
+                        <div class="icon">📊</div>
+                    </div>
+
+                    <h4>Dashboard SHE</h4>
+
+                    <p>
+                        Akses dashboard monitoring SHE.
+                    </p>
+
+                    <a href="#" class="btn">
+                        Buka Dashboard →
+                    </a>
+
+                </div>
+
+
+                <div class="card">
+
+                    <div class="card-top">
+                        <div class="icon">📝</div>
+                    </div>
+
+                    <h4>Google Form</h4>
+
+                    <p>
+                        Akses formulir online SHE.
+                    </p>
+
+                    <a href="#" class="btn">
+                        Buka Form →
+                    </a>
+
+                </div>
+
+
+                <div class="card">
+
+                    <div class="card-top">
+                        <div class="icon">📈</div>
+                    </div>
+
+                    <h4>Power BI</h4>
+
+                    <p>
+                        Monitoring data dan performa SHE.
+                    </p>
+
+                    <a href="#" class="btn">
+                        Buka Power BI →
+                    </a>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- INFORMATION -->
+
+        <div class="info">
+
+            <div class="info-icon">
+                ℹ️
+            </div>
+
+            <p>
+                <strong>Informasi:</strong>
+                Dokumen tetap tersimpan di server kantor
+                <strong>10.7.8.8</strong>.
+                Portal ini hanya menyediakan akses menuju
+                dokumen dan aplikasi yang tersedia.
+            </p>
+
+        </div>
+
+
+        <!-- FOOTER -->
+
+        <footer class="footer">
+            © 2026 SHE Portal · Safety, Health & Environment
+        </footer>
+
+    </main>
+
+</div>
 
 
 <script>
+
 function cariDokumen() {
 
     const input = document
         .getElementById("search")
         .value
-        .toLowerCase();
+        .toLowerCase()
+        .trim();
 
     const cards = document.querySelectorAll(".card");
 
     cards.forEach(function(card) {
 
         const keyword = card
-            .getAttribute("data-search")
-            .toLowerCase();
+            .getAttribute("data-search");
 
-        if (keyword.includes(input)) {
+        if (!keyword) return;
+
+        if (keyword.toLowerCase().includes(input)) {
+
             card.style.display = "";
+
         } else {
+
             card.style.display = "none";
+
         }
 
     });
+
 }
+
 </script>
 
 </body>
